@@ -1,0 +1,27 @@
+{% load static %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="{% static 'js/my_script.js' %}"></script>
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+<img src=" {% static 'media/sins1.jpg' %}" alt="">
+</div>
+    <div class="container">
+    {% for v in video %}
+        <h3>{{ v.title }}</h3>
+        <iframe width="680" height="383" src={{ v.url }}></iframe>
+        <h4>{{ v.description }}</h4>
+        <h4 class="like_teg" id="{{ v.id }}">Total likes {{ v.likes }}</h4>
+        {% for c in v.comment_set.all %}
+            <h5>{{ c.text }}</h5>
+            <h5> total likes {{ c.likes }}</h5>
+        {% endfor %}
+    {% endfor %}
+    </div>
+</body>
+</html>
